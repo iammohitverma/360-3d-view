@@ -11,14 +11,14 @@ let imgMaxLength = 35;
 
 // prev btn click function
 function reelPrev(e) {
-    imgCount = (imgCount > 1) ? imgCount -= 1 : imgMaxLength;
+    imgCount = (imgCount < imgMaxLength) ? imgCount += 1 : 1;
     setImage();
 }
 image_box_reel_left_btn?.addEventListener("click", reelPrev);
 
 // next btn click function
 function reelNext(e) {
-    imgCount = (imgCount < imgMaxLength) ? imgCount += 1 : 1;
+    imgCount = (imgCount > 1) ? imgCount -= 1 : imgMaxLength;
     setImage();
 }
 image_box_reel_right_btn?.addEventListener("click", reelNext);
@@ -59,11 +59,11 @@ function mousemoveFun(e) {
 
     if ((clientXdiffer > dynSpeed) && (directionStatus == "right")) {
         dynSpeed += speed;
-        imgCount = (imgCount < imgMaxLength) ? imgCount += 1 : 1;
+        imgCount = (imgCount > 1) ? imgCount -= 1 : imgMaxLength;
         setImage();
     } else if ((clientXdiffer < "-" + dynSpeed) && (directionStatus == "left")) {
         dynSpeed += speed;
-        imgCount = (imgCount > 1) ? imgCount -= 1 : imgMaxLength;
+        imgCount = (imgCount < imgMaxLength) ? imgCount += 1 : 1;
         setImage();
     };
 
@@ -114,11 +114,11 @@ function touchmoveFun(e) {
 
     if ((clientXdiffer > dynSpeed) && (directionStatus == "right")) {
         dynSpeed += speed;
-        imgCount = (imgCount < imgMaxLength) ? imgCount += 1 : 1;
+        imgCount = (imgCount > 1) ? imgCount -= 1 : imgMaxLength;
         setImage();
     } else if ((clientXdiffer < "-" + dynSpeed) && (directionStatus == "left")) {
         dynSpeed += speed;
-        imgCount = (imgCount > 1) ? imgCount -= 1 : imgMaxLength;
+        imgCount = (imgCount < imgMaxLength) ? imgCount += 1 : 1;
         setImage();
     };
 
