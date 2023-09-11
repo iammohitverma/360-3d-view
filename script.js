@@ -28,6 +28,17 @@ function setImage(e) {
     image_box_reel_img.setAttribute("src", `${defaultPath}${imgCount}${defaultExt}`);
 }
 
+// autorotate animation
+let autoRotateInterval;
+function autoRotateFun(e) {
+    autoRotateInterval = setInterval(autoRotateAnim, 100);
+    function autoRotateAnim(e) {
+        imgCount = (imgCount > 1) ? imgCount -= 1 : imgMaxLength;
+        setImage();
+    }
+}
+autoRotateFun();
+
 /************* */
 // for desktop 
 /**************/
@@ -35,6 +46,7 @@ let initClientX, moveClientX, clientXdiffer, speed = 5, dynSpeed, lastClientX, d
 // mousedown start
 image_box_reel.addEventListener("mousedown", mousedownFun);
 function mousedownFun(e) {
+    clearInterval(autoRotateInterval);
     initClientX = e.clientX;
     dynSpeed = speed;
     image_box_reel.addEventListener("mousemove", mousemoveFun);
@@ -92,6 +104,7 @@ image_box_reel.addEventListener("touchstart", touchstartFun);
 function touchstartFun(e) {
     initClientX = e.touches[0].clientX;
     dynSpeed = speed;
+    clearInterval(autoRotateInterval);
 }
 
 // touchmove function start
